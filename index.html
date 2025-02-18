@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz Relay Competition</title>
+    <!-- Press Start 2P Font for a Pixelated Cipher Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: black;
+        color: #00FFFF;
+        font-family: 'Ubuntu Mono', monospace;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      h1, h2, h3 {
+        text-align: center;
+      }
+      form, .section, .results {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 1px solid #00FFFF;
+      }
+      form div {
+        margin-bottom: 10px;
+      }
+      label {
+        display: inline-block;
+        width: 150px;
+      }
+      input {
+        width: calc(100% - 160px);
+        padding: 5px;
+        background-color: #222;
+        border: 1px solid #00FFFF;
+        color: #00FFFF;
+      }
+      button {
+        background-color: #222;
+        border: 1px solid #00FFFF;
+        color: #00FFFF;
+        padding: 5px 10px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      table {
+        width: 90%;
+        margin: 10px auto 30px auto;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #00FFFF;
+        padding: 10px;
+        text-align: center;
+      }
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      marquee {
+        margin: 10px 0;
+        font-size: 1.2em;
+        color: #00FFFF;
+      }
+      #globalStartSection {
+        text-align: center;
+        margin: 20px auto;
+      }
+      #globalStartSection button {
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+      #globalStartSection .start-label {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <marquee behavior="scroll" direction="left" scrollamount="5">1ST PRIZE 500</marquee>
+    <h1>Quiz Relay Competition</h1>
+    <!-- Registration Form -->
+    <form id="registrationForm">
+      <div>
+        <label for="teamName">Team Name:</label>
+        <input type="text" id="teamName" name="teamName" required>
+      </div>
+      <div>
+        <label for="member1">Member 1:</label>
+        <input type="text" id="member1" name="member1" required>
+      </div>
+      <div>
+        <label for="member2">Member 2:</label>
+        <input type="text" id="member2" name="member2" required>
+      </div>
+      <div>
+        <label for="member3">Member 3:</label>
+        <input type="text" id="member3" name="member3" required>
+      </div>
+      <div>
+        <label for="member4">Member 4:</label>
+        <input type="text" id="member4" name="member4" required>
+      </div>
+      <div>
+        <label for="collegeName">College Name:</label>
+        <input type="text" id="collegeName" name="collegeName" required>
+      </div>
+      <div>
+        <label for="teamLeader">Team Leader Name:</label>
+        <input type="text" id="teamLeader" name="teamLeader" required>
+      </div>
+      <div>
+        <label for="primaryNumber">Primary Number:</label>
+        <input type="text" id="primaryNumber" name="primaryNumber" required>
+      </div>
+      <div>
+        <label for="secondaryNumber">Secondary Number:</label>
+        <input type="text" id="secondaryNumber" name="secondaryNumber">
+      </div>
+      <div style="text-align:center;">
+        <button type="submit">Register Team</button>
+      </div>
+    </form>
+
+    <!-- Registered Teams and Create Set Section -->
+    <div class="section" id="teamSetSection">
+      <h2>Registered Teams</h2>
+      <ul id="registeredTeamsList">
+        <!-- Registered team names will be added here -->
+      </ul>
+      <div style="text-align:center;">
+        <button id="createSet">Create Set</button>
+      </div>
+      <div id="teamSets">
+        <!-- Sets (groups of 4) will be displayed here -->
+      </div>
+    </div>
+
+    <!-- Global Start for Round 1 (General Knowledge) -->
+    <div id="globalStartSection">
+      <button id="globalStartButton">Start</button>
+      <div class="start-label">START THE SET</div>
+    </div>
+
+    <hr>
+
+    <!-- Round 1: General Knowledge -->
+    <h2>Round 1: General Knowledge</h2>
+    <table id="scoreboard-round1">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Points</th>
+          <th>Time Utilized (s)</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Team rows for Round 1 will appear here -->
+      </tbody>
+    </table>
+
+    <!-- Round 2: Rubik's Cube -->
+    <h2>Round 2: Science Questions</h2>
+    <table id="scoreboard-round2">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Points</th>
+          <th>Time Utilized (s)</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Team rows for Round 2 will appear here -->
+      </tbody>
+    </table>
+
+    <!-- Round 3: Aptitude -->
+    <h2>Round 3: Aptitude</h2>
+    <table id="scoreboard-round3">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Points</th>
+          <th>Time Utilized (s)</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Team rows for Round 3 will appear here -->
+      </tbody>
+    </table>
+
+    <!-- Round 4: Maths -->
+    <h2>Round 4: Maths</h2>
+    <table id="scoreboard-round4">
+      <thead>
+        <tr>
+          <th>Team Name</th>
+          <th>Points</th>
+          <th>Time Utilized (s)</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Team rows for Round 4 will appear here -->
+      </tbody>
+    </table>
+
+    <!-- End Event, Change Set Buttons and Results Sections -->
+    <div style="text-align: center;">
+      <button id="endEvent">End Event</button>
+      <button id="changeSet">Change Set</button>
+    </div>
+    <div class="results" id="results">
+      <!-- Top 3 teams (overall) will be displayed here after ending the event -->
+    </div>
+    <div class="results" id="setResults">
+      <!-- Set-wise aggregated points and timing will be displayed here -->
+    </div>
+
+    <script>
+      // Define the rounds
+      const rounds = [
+        { id: 'round1', title: 'General Knowledge' },
+        { id: 'round2', title: "Rubik's Cube" },
+        { id: 'round3', title: 'Aptitude' },
+        { id: 'round4', title: 'Maths' }
+      ];
+
+      let teams = [];
+      let teamIdCounter = 0;
+      // Globals for set-wise functionality
+      let sets = [];
+      let currentSetIndex = 0;
+
+      // Handle team registration
+      const registrationForm = document.getElementById('registrationForm');
+      registrationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const teamName = document.getElementById('teamName').value;
+        // Additional details can be captured if needed.
+        const team = {
+          id: teamIdCounter++,
+          teamName: teamName,
+          rounds: {
+            round1: { points: 0, timeUtilized: 0, startTime: null },
+            round2: { points: 0, timeUtilized: 0, startTime: null },
+            round3: { points: 0, timeUtilized: 0, startTime: null },
+            round4: { points: 0, timeUtilized: 0, startTime: null }
+          }
+        };
+        teams.push(team);
+        updateRegisteredTeams();
+        registrationForm.reset();
+      });
+
+      // Update the Registered Teams list
+      function updateRegisteredTeams() {
+        const ul = document.getElementById('registeredTeamsList');
+        ul.innerHTML = "";
+        teams.forEach(team => {
+          ul.innerHTML += `<li>${team.teamName}</li>`;
+        });
+      }
+
+      // This function updates the round tables to display only teams from the active set.
+      function updateRoundTables() {
+        if (!sets[currentSetIndex]) return;
+        rounds.forEach(r => {
+          const tbody = document.querySelector(`#scoreboard-${r.id} tbody`);
+          tbody.innerHTML = "";
+          sets[currentSetIndex].forEach(team => {
+            const row = document.createElement('tr');
+            row.id = `team-${team.id}-${r.id}`;
+            // For Round 1, do not include individual start buttons
+            if (r.id === 'round1') {
+              row.innerHTML = `
+                <td>${team.teamName}</td>
+                <td class="points">${team.rounds[r.id].points}</td>
+                <td class="time">${team.rounds[r.id].timeUtilized}</td>
+                <td>
+                  <button class="stop-btn" data-id="${team.id}" data-round="${r.id}">Stop</button>
+                  <button class="end-btn" data-id="${team.id}" data-round="${r.id}">End</button>
+                </td>
+              `;
+            } else {
+              row.innerHTML = `
+                <td>${team.teamName}</td>
+                <td class="points">${team.rounds[r.id].points}</td>
+                <td class="time">${team.rounds[r.id].timeUtilized}</td>
+                <td>
+                  <button class="start-btn" data-id="${team.id}" data-round="${r.id}">Start</button>
+                  <button class="stop-btn" data-id="${team.id}" data-round="${r.id}">Stop</button>
+                  <button class="end-btn" data-id="${team.id}" data-round="${r.id}">End</button>
+                </td>
+              `;
+            }
+            tbody.appendChild(row);
+          });
+        });
+      }
+
+      // Create Set: Group teams into sets of 4
+      document.getElementById('createSet').addEventListener('click', function(){
+        if (teams.length === 0) {
+          alert("No teams registered.");
+          return;
+        }
+        // Create a shallow copy of teams and shuffle it
+        let teamsCopy = shuffle(teams.slice());
+        sets = [];
+        for (let i = 0; i < teamsCopy.length; i += 4) {
+          sets.push(teamsCopy.slice(i, i + 4));
+        }
+        let setsHtml = "<h2>Team Sets</h2>";
+        sets.forEach((setTeams, index) => {
+          setsHtml += `<h3>Set ${index + 1}</h3><ul>`;
+          setTeams.forEach(team => {
+            setsHtml += `<li>${team.teamName}</li>`;
+          });
+          setsHtml += `</ul>`;
+        });
+        document.getElementById('teamSets').innerHTML = setsHtml;
+        currentSetIndex = 0;
+        updateRoundTables();
+      });
+
+      // Global Start for Round 1 (General Knowledge)
+      document.getElementById('globalStartButton').addEventListener('click', function(){
+        if (!sets[currentSetIndex]) {
+          alert("No set available.");
+          return;
+        }
+        const startTime = Date.now();
+        sets[currentSetIndex].forEach(team => {
+          team.rounds['round1'].startTime = startTime;
+        });
+        alert("General Knowledge round started for all teams in Set " + (currentSetIndex + 1));
+      });
+
+      // Delegate events for all control buttons (individual Start for rounds 2-4, Stop, End)
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('start-btn')) {
+          const id = e.target.getAttribute('data-id');
+          const round = e.target.getAttribute('data-round');
+          const team = teams.find(t => t.id == id);
+          if (team) {
+            team.rounds[round].startTime = Date.now();
+            alert(`Team ${team.teamName} started ${round}!`);
+          }
+        }
+
+        if (e.target.classList.contains('stop-btn')) {
+          const id = e.target.getAttribute('data-id');
+          const round = e.target.getAttribute('data-round');
+          const team = teams.find(t => t.id == id);
+          if (team && team.rounds[round].startTime) {
+            const stopTime = Date.now();
+            team.rounds[round].timeUtilized = ((stopTime - team.rounds[round].startTime) / 1000).toFixed(2);
+            // Update the corresponding row cell
+            const row = document.getElementById(`team-${team.id}-${round}`);
+            row.querySelector('.time').innerText = team.rounds[round].timeUtilized;
+            alert(`Team ${team.teamName} stopped ${round}. Time: ${team.rounds[round].timeUtilized} seconds`);
+          } else {
+            alert('Please click "Start" first.');
+          }
+        }
+
+        if (e.target.classList.contains('end-btn')) {
+          const id = e.target.getAttribute('data-id');
+          const round = e.target.getAttribute('data-round');
+          const team = teams.find(t => t.id == id);
+          if (team) {
+            let pts = prompt(`Enter points for team ${team.teamName} in ${round}:`, team.rounds[round].points);
+            if (pts !== null) {
+              team.rounds[round].points = parseInt(pts) || 0;
+              // Update the corresponding row cell
+              const row = document.getElementById(`team-${team.id}-${round}`);
+              row.querySelector('.points').innerText = team.rounds[round].points;
+            }
+          }
+        }
+      });
+
+      // End Event: Aggregate scores/timings among ALL teams (across all sets) and show overall rankings
+      const endEventButton = document.getElementById('endEvent');
+      endEventButton.addEventListener('click', function() {
+        if (teams.length === 0) {
+          alert("No teams registered.");
+          return;
+        }
+        // Compute overall points and overall time for each team (from all sets)
+        teams.forEach(team => {
+          let totalPoints = 0;
+          let totalTime = 0;
+          for (let round in team.rounds) {
+            totalPoints += team.rounds[round].points;
+            totalTime += parseFloat(team.rounds[round].timeUtilized) || 0;
+          }
+          team.totalPoints = totalPoints;
+          team.totalTime = totalTime;
+        });
+        // Sort all teams by points (desc) and time (asc) if points are equal
+        const sortedTeams = teams.slice().sort((a, b) => {
+          if (b.totalPoints === a.totalPoints) {
+            return a.totalTime - b.totalTime;
+          }
+          return b.totalPoints - a.totalPoints;
+        });
+        const topTeams = sortedTeams.slice(0, 3);
+        let html = '<h2>Top 3 Teams (Overall)</h2><ol>';
+        topTeams.forEach((team, index) => {
+          let medal = '';
+          if (index === 0) medal = '🥇';
+          else if (index === 1) medal = '🥈';
+          else if (index === 2) medal = '🥉';
+          html += `<li>${medal} ${team.teamName} – Total Points: ${team.totalPoints}, Total Time: ${team.totalTime} s</li>`;
+        });
+        html += '</ol>';
+        document.getElementById('results').innerHTML = html;
+
+        // Also update set-wise results for all sets
+        let setResultsHtml = '<h2>Set-wise Results</h2>';
+        sets.forEach((setTeams, index) => {
+          setResultsHtml += `<h3>Set ${index + 1}</h3>`;
+          setResultsHtml += `<table><thead><tr>
+               <th>Team Name</th>
+               <th>Total Points</th>
+               <th>Total Time (s)</th>
+             </tr></thead><tbody>`;
+          setTeams.forEach(team => {
+            let totalPoints = 0;
+            let totalTime = 0;
+            for (let round in team.rounds) {
+              totalPoints += team.rounds[round].points;
+              totalTime += parseFloat(team.rounds[round].timeUtilized) || 0;
+            }
+            setResultsHtml += `<tr>
+                <td>${team.teamName}</td>
+                <td>${totalPoints}</td>
+                <td>${totalTime}</td>
+              </tr>`;
+          });
+          setResultsHtml += `</tbody></table>`;
+        });
+        document.getElementById('setResults').innerHTML = setResultsHtml;
+      });
+
+      // Change Set: Move to the next set (if available) and update the round tables accordingly
+      document.getElementById('changeSet').addEventListener('click', function(){
+        if (!sets || sets.length === 0) {
+          alert("No sets available.");
+          return;
+        }
+        if (currentSetIndex < sets.length - 1) {
+          currentSetIndex++;
+          updateRoundTables();
+          alert("Changed to Set " + (currentSetIndex + 1));
+        } else {
+          alert("No more sets.");
+        }
+      });
+
+      // Utility function to shuffle an array (Fisher-Yates)
+      function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      }
+    </script>
+  </body>
+</html>
